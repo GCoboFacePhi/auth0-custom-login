@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+html {
+  height: 100%;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  line-height: 1;
+}
+
+#root,
+#reset-password {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

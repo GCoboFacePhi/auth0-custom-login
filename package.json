@@ -1,0 +1,44 @@
+{
+  "name": "custom-login-html",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@facephi/ui-flex-container": "1.0.0",
+    "@facephi/ui-label": "1.0.0",
+    "@facephi/ui-button": "1.0.5",
+    "@facephi/ui-theme": "1.0.0",
+    "@facephi/ui-logo": "1.0.0",
+    "@facephi/ui-input": "1.0.5",
+    "@facephi/ui-spinner": "1.0.2",
+    "@facephi/ui-icon": "1.0.3",
+    "@facephi/ui-toast": "1.0.6",
+    "i18next-http-backend": "2.1.1",
+    "i18next-browser-languagedetector": "7.0.1",
+    "styled-components": "5.3.6",
+    "auth0-js": "9.19.2",
+    "react-i18next": "12.1.4",
+    "@hookform/resolvers": "2.9.10",
+    "react-hook-form": "7.40.0",
+    "yup": "0.32.11",
+    "i18next": "22.4.9",
+    "react-router-dom": "6.8.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitejs/plugin-react": "^3.1.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.1.0",
+    "@types/auth0-js": "9.14.7",
+    "@types/styled-components": "5.1.26",
+    "@types/node": "18.11.18"
+  }
+}
