@@ -10,7 +10,9 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-    	var config = JSON.parse(decodeURIComponent(escape(window.atob('@@config@@'))));
+      var config = JSON.parse(
+        decodeURIComponent(escape(window.atob('@@config@@'))),
+      )
     </script>
   </body>
 </html>
