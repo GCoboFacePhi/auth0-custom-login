@@ -5,9 +5,7 @@ import { Logo } from '@facephi/ui-logo'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import {
-  Layout, StyledButtonLogin, StyledPasswordInput
-} from '../components'
+import { Layout, StyledButtonLogin, StyledPasswordInput } from '../components'
 import { ResetPasswordDTO, resetPasswordSchema } from '../state/model'
 
 const ResetPassword = () => {

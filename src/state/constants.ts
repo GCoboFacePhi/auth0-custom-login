@@ -3,7 +3,7 @@ export const PASSWORD = 'password'
 export const DATABASE_CONNECTION = 'Username-Password-Authentication'
 
 export enum RoutesName {
-  login = '/login',
+  home = '/',
   forgotPassword = '/forgot-password',
   resetPassword = '/reset',
 }
