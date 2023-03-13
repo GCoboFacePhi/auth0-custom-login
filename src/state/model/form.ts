@@ -23,13 +23,7 @@ export const loginSchema: yup.SchemaOf<LoginDTO> = yup.object().shape({
 export const resetPasswordSchema: yup.SchemaOf<ResetPasswordDTO> = yup
   .object()
   .shape({
-    newPassword: yup
-      .string()
-      .required('Password is a required field')
-      .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-        'Password must contain at least 8 characters, one uppercase, one number and one special case character',
-      ),
+    newPassword: yup.string().required('Password is a required field'),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref('newPassword'), null], 'Passwords must match'),

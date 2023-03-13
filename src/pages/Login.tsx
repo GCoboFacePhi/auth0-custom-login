@@ -12,7 +12,7 @@ import {
   Layout,
   StyledButtonLogin,
   StyledForgotPassword,
-  StyledPasswordInput
+  StyledPasswordInput,
 } from '../components'
 import { useAuth } from '../providers'
 import { RoutesName } from '../state/constants'
@@ -35,11 +35,11 @@ const Login = () => {
   async function onSubmit(data: LoginDTO) {
     try {
       await loginWithEmail(data.email, data.password)
-    } catch (err: any) {
+    } catch (err) {
       err &&
         toastManager({
           type: 'error',
-          message: err.description,
+          message: err as string,
         })
     }
   }

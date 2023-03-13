@@ -6,10 +6,12 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { Layout, StyledButtonLogin, StyledPasswordInput } from '../components'
+import { useAuth } from '../providers'
 import { ResetPasswordDTO, resetPasswordSchema } from '../state/model'
 
 const ResetPassword = () => {
   const { t } = useTranslation()
+  const { resetPassword } = useAuth()
 
   const {
     control,
@@ -21,6 +23,13 @@ const ResetPassword = () => {
 
   async function onSubmit(data: ResetPasswordDTO) {
     console.log(data)
+    try {
+      console.log('esta pasando')
+      await resetPassword(data.newPassword)
+      console.log('ha pasado')
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   return (

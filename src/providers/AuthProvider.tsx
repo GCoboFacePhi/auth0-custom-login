@@ -1,4 +1,5 @@
 import auth0 from 'auth0-js'
+import axios from 'axios'
 import React, { createContext, useCallback, useContext, useMemo } from 'react'
 
 type Props = { children: React.ReactNode }
@@ -9,16 +10,19 @@ type ContextProps = {
   login(email: string, password: string): Promise<unknown>
   changePassword(email: string): Promise<unknown>
   signup(email: string, password: string): Promise<unknown>
+  resetPassword(password: string): Promise<unknown>
 }
 
 const AuthContext = createContext<ContextProps>({
   login: () => new Promise((resolve) => resolve({})),
   signup: () => new Promise((resolve) => resolve({})),
   changePassword: () => new Promise((resolve) => resolve({})),
+  resetPassword: () => new Promise((resolve) => resolve({})),
 })
 
+const configAuth0 = (window as any).configAuth0
+
 export function AuthProvider({ children }: Props) {
-  
   const webAuth = useMemo(
     () =>
       new auth0.WebAuth({
@@ -97,9 +101,20 @@ export function AuthProvider({ children }: Props) {
     [webAuth],
   )
 
+  const resetPassword = (password: string) => {
+    const params = new URLSearchParams()
+    params.append('_csrf', configAuth0._csrf)
+    params.append('ticket', configAuth0.ticket)
+    params.append('newPassword', password)
+    params.append('confirmNewPassword', password)
+
+    return axios.post('https://dev-kva89132.us.auth0.com/lo/reset', params)
+  }
 
   return (
-    <AuthContext.Provider value={{ login, changePassword, signup }}>
+    <AuthContext.Provider
+      value={{ login, changePassword, signup, resetPassword }}
+    >
       {children}
     </AuthContext.Provider>
   )
