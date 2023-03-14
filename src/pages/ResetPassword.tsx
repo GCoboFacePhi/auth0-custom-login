@@ -2,16 +2,21 @@ import { FlexContainer } from '@facephi/ui-flex-container'
 import { Input } from '@facephi/ui-input'
 import { Label } from '@facephi/ui-label'
 import { Logo } from '@facephi/ui-logo'
+import { useToast } from '@facephi/ui-toast'
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
 import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { Layout, StyledButtonLogin, StyledPasswordInput } from '../components'
 import { useAuth } from '../providers'
+import { RoutesName } from '../state/constants'
 import { ResetPasswordDTO, resetPasswordSchema } from '../state/model'
 
 const ResetPassword = () => {
   const { t } = useTranslation()
   const { resetPassword } = useAuth()
+  const { toastManager } = useToast()
+  const navigate = useNavigate()
 
   const {
     control,
@@ -22,13 +27,19 @@ const ResetPassword = () => {
   })
 
   async function onSubmit(data: ResetPasswordDTO) {
-    console.log(data)
     try {
-      console.log('esta pasando')
       await resetPassword(data.newPassword)
-      console.log('ha pasado')
-    } catch (e) {
-      console.log(e)
+      toastManager({
+        type: 'success',
+        message: t('Password changed'),
+      })
+      navigate(RoutesName.home)
+    } catch (err) {
+      err &&
+        toastManager({
+          type: 'error',
+          message: err.description,
+        })
     }
   }
 

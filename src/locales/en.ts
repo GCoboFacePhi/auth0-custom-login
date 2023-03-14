@@ -23,4 +23,5 @@ export const en = {
   Or: 'Or',
   'go to login': 'go to login',
   'Email sent': 'Email sent',
+  'Password changed': 'Password changed',
 }

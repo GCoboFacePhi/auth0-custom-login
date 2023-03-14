@@ -45,7 +45,7 @@ export function AuthProvider({ children }: Props) {
           (error, result) => {
             if (error) {
               reject(error)
-              console.log(error)
+              return
             }
             resolve(result)
           },
@@ -70,7 +70,7 @@ export function AuthProvider({ children }: Props) {
           (error, result) => {
             if (error) {
               reject(error)
-              console.log(error)
+              return
             }
             resolve(result)
           },
@@ -103,12 +103,12 @@ export function AuthProvider({ children }: Props) {
 
   const resetPassword = (password: string) => {
     const params = new URLSearchParams()
-    params.append('_csrf', configAuth0._csrf)
+    params.append('_csrf', configAuth0.csrf_token)
     params.append('ticket', configAuth0.ticket)
     params.append('newPassword', password)
     params.append('confirmNewPassword', password)
 
-    return axios.post('https://dev-kva89132.us.auth0.com/lo/reset', params)
+    return axios.post('/lo/reset', params)
   }
 
   return (
