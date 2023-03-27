@@ -1,28 +1,28 @@
-import { FlexContainer } from '@facephi/ui-flex-container'
-import { Input } from '@facephi/ui-input'
-import { Label } from '@facephi/ui-label'
-import { Logo } from '@facephi/ui-logo'
-import { useToast } from '@facephi/ui-toast'
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
-import { useEffect } from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react';
+import { FlexContainer } from '@facephi/ui-flex-container';
+import { Input } from '@facephi/ui-input';
+import { Label } from '@facephi/ui-label';
+import { Logo } from '@facephi/ui-logo';
+import { useToast } from '@facephi/ui-toast';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import {
   Layout,
   StyledButtonLogin,
   StyledForgotPassword,
   StyledPasswordInput,
-} from '../components'
-import { useAuth } from '../providers'
-import { RoutesName } from '../state/constants'
-import { LoginDTO, loginSchema } from '../state/model'
+} from '../components';
+import { useAuth } from '../providers';
+import { RoutesName } from '../state/constants';
+import { LoginDTO, loginSchema } from '../state/model';
 
 const Login = () => {
-  const { t } = useTranslation()
-  const navigate = useNavigate()
-  const { toastManager } = useToast()
-  const { login: loginWithEmail } = useAuth()
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { toastManager } = useToast();
+  const { login: loginWithEmail } = useAuth();
 
   const {
     control,
@@ -30,25 +30,25 @@ const Login = () => {
     formState: { errors },
   } = useForm<LoginDTO>({
     resolver: yupResolver(loginSchema),
-  })
+  });
 
   async function onSubmit(data: LoginDTO) {
     try {
-      await loginWithEmail(data.email, data.password)
+      await loginWithEmail(data.email, data.password);
     } catch (err) {
       err &&
         toastManager({
           type: 'error',
           message: err as string,
-        })
+        });
     }
   }
 
   useEffect(() => {
     if (window.location.pathname.includes('reset')) {
-      navigate(RoutesName.resetPassword)
+      navigate(RoutesName.resetPassword);
     }
-  }, [])
+  }, []);
 
   return (
     <Layout>
@@ -90,7 +90,7 @@ const Login = () => {
               variant="secondary"
               errorLabel={
                 t(
-                  `${errors.password ? errors.password?.message : ''}`,
+                  `${errors.password ? errors.password?.message : ''}`
                 ) as string
               }
             />
@@ -108,7 +108,7 @@ const Login = () => {
         </StyledButtonLogin>
       </FlexContainer>
     </Layout>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

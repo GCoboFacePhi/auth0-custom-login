@@ -1,24 +1,25 @@
-import { FlexContainer } from '@facephi/ui-flex-container'
-import { Input } from '@facephi/ui-input'
-import { Label } from '@facephi/ui-label'
-import { Logo } from '@facephi/ui-logo'
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
-import { Controller, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { FlexContainer } from '@facephi/ui-flex-container';
+import { Input } from '@facephi/ui-input';
+import { Label } from '@facephi/ui-label';
+import { Logo } from '@facephi/ui-logo';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import {
-    Layout,
-    StyledButtonLogin,
-    StyledForgotPassword, StyledPasswordInput
-} from '../components'
-import { LoginDTO, loginSchema } from '../state/model'
+  Layout,
+  StyledButtonLogin,
+  StyledForgotPassword,
+  StyledPasswordInput,
+} from '../components';
+import { LoginDTO, loginSchema } from '../state/model';
 
 type Props = {
-    onSubmit(data: LoginDTO): Promise<void>
-    onGoForgotPassword(): void
-  }
+  onSubmit(data: LoginDTO): Promise<void>;
+  onGoForgotPassword(): void;
+};
 
 export const Login = ({ onGoForgotPassword, onSubmit }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const {
     control,
@@ -26,8 +27,8 @@ export const Login = ({ onGoForgotPassword, onSubmit }: Props) => {
     formState: { errors },
   } = useForm<LoginDTO>({
     resolver: yupResolver(loginSchema),
-  })
- 
+  });
+
   return (
     <Layout>
       <Logo black={false} height="7.2rem" width="7.2rem" />
@@ -68,7 +69,7 @@ export const Login = ({ onGoForgotPassword, onSubmit }: Props) => {
               variant="secondary"
               errorLabel={
                 t(
-                  `${errors.password ? errors.password?.message : ''}`,
+                  `${errors.password ? errors.password?.message : ''}`
                 ) as string
               }
             />
@@ -86,6 +87,5 @@ export const Login = ({ onGoForgotPassword, onSubmit }: Props) => {
         </StyledButtonLogin>
       </FlexContainer>
     </Layout>
-  )
-}
-
+  );
+};

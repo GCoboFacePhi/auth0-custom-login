@@ -20,7 +20,7 @@ const resources = {
       ...pt,
     },
   },
-}
+};
 
 i18n
   .use(LanguageDetector)

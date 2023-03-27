@@ -1,14 +1,14 @@
-import { InphiniteThemeProvider } from '@facephi/ui-theme'
-import { ToastProvider } from '@facephi/ui-toast'
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
-import './i18n'
-import './index.css'
-import { AuthProvider, TranslationProvider } from './providers'
-import { Routes } from './routes/Routes'
+import React from 'react';
+import { InphiniteThemeProvider } from '@facephi/ui-theme';
+import { ToastProvider } from '@facephi/ui-toast';
+import ReactDOM from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
+import './i18n';
+import './index.css';
+import { AuthProvider, TranslationProvider } from './providers';
+import { Routes } from './routes/Routes';
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
 
 ReactDOM.createRoot(rootElement as HTMLElement).render(
   <React.StrictMode>
@@ -21,5 +21,5 @@ ReactDOM.createRoot(rootElement as HTMLElement).render(
         </AuthProvider>
       </TranslationProvider>
     </InphiniteThemeProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

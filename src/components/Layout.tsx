@@ -1,5 +1,5 @@
-import { ReactNode } from 'react'
-import { StyledLayout, StyledModalLayout } from './Styles'
+import { ReactNode } from 'react';
+import { StyledLayout, StyledModalLayout } from './Styles';
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -18,5 +18,5 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         {children}
       </StyledModalLayout>
     </StyledLayout>
-  )
-}
+  );
+};

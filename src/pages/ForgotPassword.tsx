@@ -1,44 +1,44 @@
-import { FlexContainer } from '@facephi/ui-flex-container'
-import { Input } from '@facephi/ui-input'
-import { Label } from '@facephi/ui-label'
-import { Logo } from '@facephi/ui-logo'
-import { useToast } from '@facephi/ui-toast'
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js'
-import { Controller, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
-import { Layout, StyledForgotButton } from '../components'
-import { useAuth } from '../providers'
-import { RoutesName } from '../state/constants'
-import { ForgotPasswordDTO, forgotPasswordSchema } from '../state/model'
+import { FlexContainer } from '@facephi/ui-flex-container';
+import { Input } from '@facephi/ui-input';
+import { Label } from '@facephi/ui-label';
+import { Logo } from '@facephi/ui-logo';
+import { useToast } from '@facephi/ui-toast';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup.js';
+import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { Layout, StyledForgotButton } from '../components';
+import { useAuth } from '../providers';
+import { RoutesName } from '../state/constants';
+import { ForgotPasswordDTO, forgotPasswordSchema } from '../state/model';
 
 const ForgotPassword = () => {
-  const { t } = useTranslation()
-  const { changePassword } = useAuth()
-  const { toastManager } = useToast()
-  const navigate = useNavigate()
+  const { t } = useTranslation();
+  const { changePassword } = useAuth();
+  const { toastManager } = useToast();
+  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<ForgotPasswordDTO>({
     resolver: yupResolver(forgotPasswordSchema),
-  })
+  });
 
   async function onSubmit(data: ForgotPasswordDTO) {
     try {
-      await changePassword(data.email)
+      await changePassword(data.email);
       toastManager({
         type: 'success',
         message: t('Email sent'),
-      })
-      navigate(RoutesName.home)
+      });
+      navigate(RoutesName.home);
     } catch (err: any) {
       err &&
         toastManager({
           type: 'error',
           message: err.description,
-        })
+        });
     }
   }
 
@@ -72,14 +72,18 @@ const ForgotPassword = () => {
         </StyledForgotButton>
         <Label color="white" textAlign="center">
           {t('Or')}
-          <Label as="a" color="purple200" onClick={() => navigate(RoutesName.home)}>
+          <Label
+            as="a"
+            color="purple200"
+            onClick={() => navigate(RoutesName.home)}
+          >
             {' '}
             {t('go to login')}
           </Label>
         </Label>
       </FlexContainer>
     </Layout>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;
